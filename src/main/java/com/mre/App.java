@@ -23,9 +23,7 @@ public class App {
         });
     }
 
-
-    public static void main(String[] args) throws Exception {
-
+    public static void testAsync() throws Exception {
         // Die beiden Aufrufe von f1 passieren parallel wie bei der Laufzeit zu sehen ist
         norm2(f1(), f1())
                 .elapsed()
@@ -42,6 +40,19 @@ public class App {
                 .subscribe(v-> System.out.printf("Received value %f%n", v));
 
         Thread.sleep(20000);
+    }
+
+    public static void testSync() throws Exception {
+        // Die beiden Aufrufe von f1 passieren parallel wie bei der Laufzeit zu sehen ist
+        var res = norm2(f1(), f1()).elapsed().block();
+        System.out.printf("Duration %d : value %f%n", res.getT1(),res.getT2());
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        testSync();
+        testAsync();
+
 
     }
 }
