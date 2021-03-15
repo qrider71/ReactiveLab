@@ -26,6 +26,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
+        // Die beiden Aufrufe von f1 passieren parallel wie bei der Laufzeit zu sehen ist
         norm2(f1(), f1())
                 .elapsed()
                 .subscribe(t -> System.out.printf("Duration %d : value %f%n", t.getT1(),t.getT2()));
