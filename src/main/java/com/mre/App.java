@@ -24,6 +24,9 @@ public class App {
     }
 
     public static void testAsync() throws Exception {
+
+        System.out.println("Async Test");
+
         // Die beiden Aufrufe von f1 passieren parallel wie bei der Laufzeit zu sehen ist
         norm2(f1(), f1())
                 .elapsed()
@@ -43,6 +46,9 @@ public class App {
     }
 
     public static void testSync() throws Exception {
+
+        System.out.println("Sync Test");
+
         // Die beiden Aufrufe von f1 passieren parallel wie bei der Laufzeit zu sehen ist
         var res = norm2(f1(), f1()).elapsed().block();
         System.out.printf("Duration %d : value %f%n", res.getT1(),res.getT2());
@@ -51,6 +57,9 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         testSync();
+
+        System.out.println();
+
         testAsync();
 
 
