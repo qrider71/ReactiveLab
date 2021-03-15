@@ -54,9 +54,19 @@ public class App {
         System.out.printf("Duration %d : value %f%n", res.getT1(),res.getT2());
     }
 
+    public static void testSyncWithBadCode() throws Exception {
+
+        System.out.println("Sync Test with bad code norm1()");
+
+        // Die beiden Aufrufe von f1 passieren parallel wie bei der Laufzeit zu sehen ist
+        var res = norm1(f1(), f1()).elapsed().block();
+        System.out.printf("Duration %d : value %f%n", res.getT1(),res.getT2());
+    }
+
     public static void main(String[] args) throws Exception {
 
         testSync();
+        testSyncWithBadCode();
 
         System.out.println();
 
